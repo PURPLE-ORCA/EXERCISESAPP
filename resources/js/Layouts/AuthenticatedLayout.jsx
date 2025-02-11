@@ -30,6 +30,12 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Manage Exercises
                                 </NavLink>
+                                <NavLink
+                                    href={route('exercises.indexUser')}
+                                    active={route().current('exercises.indexUser')}
+                                >
+                                    Manage Exercises
+                                </NavLink>
                             </div>
                         </div>
 
@@ -131,6 +137,12 @@ export default function AuthenticatedLayout({ header, children }) {
                         <ResponsiveNavLink
                             href={route('admin.exercises.index')}
                             active={route().current('admin.exercises.index')}
+                        >
+                            Manage Exercises
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('exercises.indexUser')}
+                            active={route().current('exercises.indexUser')}
                         >
                             Manage Exercises
                         </ResponsiveNavLink>

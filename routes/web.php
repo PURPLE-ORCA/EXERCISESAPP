@@ -37,4 +37,9 @@ Route::middleware(['web', 'auth'])->group(function () {
     });
 });
 
+Route::middleware(['web'])->group(function () {
+    Route::get('/exercises', [ExerciseController::class, 'indexUser'])->name('exercises.indexUser');
+    Route::get('/exercises/{exercise}', [ExerciseController::class, 'show'])->name('exercises.show');
+});
+
 require __DIR__.'/auth.php';

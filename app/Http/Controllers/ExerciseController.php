@@ -17,6 +17,18 @@ class ExerciseController extends Controller
         return inertia('Admin/Exercises/Index', ['exercises' => $exercises]);
     }
 
+    public function indexUser()
+    {
+        $exercises = Exercise::with('topic')->get();
+        return inertia('Exercises/Index', ['exercises' => $exercises]);
+    }
+
+    public function show(Exercise $exercise)
+    {
+        $exercise->load('topic');
+        return inertia('Exercises/Show', ['exercise' => $exercise]);
+    }
+
     public function create()
     {
         $topics = Topic::all();
