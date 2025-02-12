@@ -36,45 +36,51 @@ const Index = ({ exercises }) => {
     return (
         <AuthenticatedLayout>
             <Head title="Exercises" />
-            <div className="p-6 bg-black text-green-500">
-                <h1 className="text-2xl font-bold mb-4">Exercises</h1>
-                <Link href={route('admin.exercises.create')} className="bg-green-500 text-black px-4 py-2 rounded mb-4">
-                    Add New Exercise
+            <div className="p-8 bg-black text-green-400 min-h-screen flex flex-col items-center">
+                <h1 className="text-4xl font-extrabold text-green-300 mb-8 text-center border-b border-green-500 pb-2 w-full max-w-3xl">
+                    Manage Exercises
+                </h1>
+                <Link
+                    href={route('admin.exercises.create')}
+                    className="bg-green-500 hover:bg-green-600 text-black px-6 py-3 rounded-lg font-semibold mb-6 shadow-md transition duration-300"
+                >
+                    + Add New Exercise
                 </Link>
-                <table className="w-full border-collapse border-green-500">
-                    <thead>
-                        <tr>
-                            <th className="border border-green-500 p-2">Title</th>
-                            <th className="border border-green-500 p-2">Topic</th>
-                            <th className="border border-green-500 p-2">Level</th>
-                            <th className="border border-green-500 p-2">Content</th>
-                            <th className="border border-green-500 p-2">Solution</th>
-                            <th className="border border-green-500 p-2">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {exercises.map((exercise) => (
-                            <tr key={exercise.id}>
-                                <td className="border border-green-500 p-2">{exercise.title}</td>
-                                <td className="border border-green-500 p-2">{exercise.topic.name}</td>
-                                <td className="border border-green-500 p-2">{exercise.level}</td>
-                                <td className="border border-green-500 p-2">{exercise.content}</td>
-                                <td className="border border-green-500 p-2">{exercise.solution}</td>
-                                <td className="border border-green-500 p-2 flex">
-                                    <Link href={route('admin.exercises.edit', exercise.id)} className="bg-green-500 text-black px-2 py-1 rounded mr-2">
-                                        <i className='bx bxs-edit-alt'></i>
-                                    </Link>
-                                    <button
-                                        onClick={() => handleDeleteClick(exercise)}
-                                        className="bg-red-500 text-black px-2 py-1 rounded"
-                                    >
-                                        <i className='bx bxs-trash'></i>
-                                    </button>
-                                </td>
+                <div className="w-full max-w-6xl overflow-x-auto">
+                    <table className="w-full border border-green-500 text-left bg-gray-900 rounded-lg overflow-hidden">
+                        <thead>
+                            <tr className="bg-green-600 text-black">
+                                <th className="p-4">Title</th>
+                                <th className="p-4">Topic</th>
+                                <th className="p-4">Level</th>
+                                <th className="p-4">Actions</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {exercises.map((exercise) => (
+                                <tr key={exercise.id} className="border-b border-green-500 hover:bg-gray-800 transition">
+                                    <td className="p-4">{exercise.title}</td>
+                                    <td className="p-4">{exercise.topic.name}</td>
+                                    <td className="p-4">{exercise.level}</td>
+                                    <td className="p-4 flex space-x-3">
+                                        <Link
+                                            href={route('admin.exercises.edit', exercise.id)}
+                                            className="text-black py-1 rounded-lg shadow-md"
+                                        >
+                                            <i class='bx bxs-edit-alt'></i>
+                                        </Link>
+                                        <button
+                                            onClick={() => handleDeleteClick(exercise)}
+                                            className=" text-black py-1 rounded-lg shadow-md"
+                                        >
+                                            <i class='bx bxs-trash' ></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <ConfirmationModal
                 isOpen={modalOpen}
