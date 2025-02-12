@@ -19,7 +19,7 @@ class ExerciseController extends Controller
 
     public function indexUser()
     {
-        $exercises = Exercise::with('topic')->paginate(10);
+        $exercises = Exercise::with('topic')->paginate(18);
         return inertia('Exercises/Index', ['exercises' => $exercises]);
     }
 
